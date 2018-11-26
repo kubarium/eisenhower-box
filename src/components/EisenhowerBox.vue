@@ -60,7 +60,7 @@
               Do it later
             </h2>
             <span class="subheading font-italic">Stop doing this or do it in moderation!</span>
-            <v-btn icon :disabled="$store.state.section.later.length==4" @click="$store.commit('addItem',{section:'later'})">
+            <v-btn icon :disabled="$store.state.section.later.length==4" @click="$store.dispatch('interactWithItem',{intention:'addItem',section:'later'})">
               <v-icon>add</v-icon>
             </v-btn>
           </header>

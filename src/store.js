@@ -28,18 +28,21 @@ export default new Vuex.Store({
       state.section[payload.section].splice(state.section[payload.section].length, 0, "");
     },
     editItem(state, payload) {
-      state.section[payload.section].splice(payload.index, 1, payload.value);
+      state.section[payload.section].splice(payload.index, 1, payload.text);
     },
     removeItem(state, payload) {
       state.section[payload.section].splice(payload.index, 1);
-      /* switch(payload.section){
-        case "do":
-
-      } */
     },
-    updateStorage(state, payload) {
+    updateStorage(state) {
       localStorage.setItem("eisenhower-box", JSON.stringify(state.section));
     }
   },
-  actions: {}
+  actions: {
+    interactWithItem(context, payload) {
+      //payload.intention will be like addItem, editItem, etc.
+      context.commit(payload.intention, payload);
+      //then store the changes
+      context.commit("updateStorage");
+    }
+  }
 });
