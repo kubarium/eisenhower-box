@@ -1,27 +1,30 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import items from "./items.json";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    heading: {
+      do: "Do",
+      decide: "Decide",
+      delegate: "Delegate",
+      later: "Do it later"
+    },
+    subheading: {
+      do: "Do it now.",
+      decide: "Schedule a time to do it.",
+      delegate: "Who can do it for you?",
+      later: "Stop doing this or do it in moderation!"
+    },
     placeholder: {
       do: "Do it, do it now!",
-      decide: "decide",
-      delegate: "delegate",
-      later: "later"
+      decide: "Tackle this soon but not right now.",
+      delegate: "Find another poor soul to help you. AI for conscience?",
+      later: "This may be what you want but is this what you really need?"
     },
-    section: {
-      do: ["Write a blog post", "Do taxes", "Project deadline", "Wife in labor"],
-      decide: ["Exercise", "Family Time. Call friends", "Researching articles", "Planning long term business strategy"],
-      delegate: ["Phone calls and text messages", "Booking fligts", "Answering some emails", "Schedule interviews"],
-      later: [
-        "Watching television",
-        "Social media",
-        "Sorting junk email",
-        "Beating yourself up for being in this situation"
-      ]
-    }
+    section: {}
   },
   mutations: {
     addItem(state, payload) {
@@ -35,6 +38,11 @@ export default new Vuex.Store({
     },
     updateStorage(state) {
       localStorage.setItem("eisenhower-box", JSON.stringify(state.section));
+    },
+    loadStorage(state) {
+      let storedItems = localStorage.getItem("eisenhower-box");
+
+      state.section = storedItems ? JSON.parse(storedItems) : items;
     }
   },
   actions: {

@@ -1,73 +1,40 @@
 <template>
   <v-layout align-center justify-center row fill-height>
 
-    <v-flex xs12 md12 lg10 xl8>
+    <v-flex md12 lg10 xl8 hidden-xs-only>
       <div class="box">
-        <span class="headline"></span>
-        <span class="headline text-uppercase">Urgent</span>
-        <span class="headline text-uppercase">Not Urgent</span>
-        <span class="headline text-uppercase importance">Important</span>
+        <span class="headline "></span>
+        <span class="headline text-uppercase ">Urgent</span>
+        <span class="headline text-uppercase ">Not Urgent</span>
+        <span class="headline text-uppercase  importance">Important</span>
+
         <div class="item green lighten-2">
-
-          <header class="white--text">
-            <h2 class="display-1 text-uppercase font-weight-bold">
-              Do
-            </h2>
-            <span class="subheading font-italic">Do it now.</span>
-            <v-btn icon :disabled="$store.state.section.do.length==4">
-              <v-icon>add</v-icon>
-            </v-btn>
-          </header>
-
+          <section-header section="do" />
           <items section="do" />
-
         </div>
+
         <div class="item green lighten-2">
-
-          <header class="white--text">
-            <h2 class="display-1 text-uppercase font-weight-bold">
-              Decide
-            </h2>
-            <span class="subheading font-italic">Schedule a time to do it.</span>
-            <v-btn icon :disabled="$store.state.section.decide.length==4">
-              <v-icon>add</v-icon>
-            </v-btn>
-          </header>
-
+          <section-header section="decide" />
           <items section="decide" />
-
         </div>
-        <span class="headline text-uppercase importance">Not Important</span>
+
+        <span class="headline text-uppercase  importance">Not Important</span>
+
         <div class="item deep-orange lighten-2">
-
-          <header class="white--text">
-            <h2 class="display-1 text-uppercase font-weight-bold">
-              Delegate
-            </h2>
-            <span class="subheading font-italic">Who can do it for you?</span>
-            <v-btn icon :disabled="$store.state.section.delegate.length==4">
-              <v-icon>add</v-icon>
-            </v-btn>
-          </header>
-
+          <section-header section="delegate" />
           <items section="delegate" />
-
         </div>
+
         <div class="item deep-orange lighten-2">
-
-          <header class="white--text">
-            <h2 class="display-1 text-uppercase font-weight-bold">
-              Do it later
-            </h2>
-            <span class="subheading font-italic">Stop doing this or do it in moderation!</span>
-            <v-btn icon :disabled="$store.state.section.later.length==4" @click="$store.dispatch('interactWithItem',{intention:'addItem',section:'later'})">
-              <v-icon>add</v-icon>
-            </v-btn>
-          </header>
-
+          <section-header section="later" />
           <items section="later" />
-
         </div>
+
+      </div>
+    </v-flex>
+    <v-flex xs12>
+      <div class="item green lighten-2">
+        <items section="do" />
       </div>
     </v-flex>
   </v-layout>
@@ -75,11 +42,15 @@
 
 <script>
 import Items from "./Items.vue"
+import SectionHeader from "./SectionHeader.vue"
 export default {
   name: 'EisenhowerBox',
   props: {
   },
-  components:{Items}
+  created(){
+this.$store.commit("loadStorage")
+  },
+  components:{Items,SectionHeader}
 }
 </script>
 
@@ -97,15 +68,7 @@ export default {
   background: #ebebeb;
   padding: 15px;
 }
-header {
-  display: grid;
-  grid-auto-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  grid-auto-flow: column;
-}
-button {
-  justify-self: end;
-}
+
 .importance {
   writing-mode: vertical-rl;
   text-align: center;
