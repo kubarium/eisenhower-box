@@ -13,8 +13,7 @@
     </v-tooltip>
     <v-content>
       <v-container fluid>
-        <eisenhower-box msg="Welcome to Your Vue.js App" />
-
+        <eisenhower-box />
       </v-container>
     </v-content>
     <v-footer app></v-footer>

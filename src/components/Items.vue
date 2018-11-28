@@ -1,9 +1,19 @@
 <template>
-    <v-list class="items">
-        <v-list-tile v-for="(item,index) in $store.state.section[section]" :key="`${section}-${index}`">
-            <v-text-field :value="item" @input="editItem($event, index)" :ref="`${section}-${index}`" :placeholder="$store.state.placeholder[section]" @click:append="removeItem(index)" append-icon="close"></v-text-field>
-        </v-list-tile>
-    </v-list>
+  <v-list class="items">
+    <v-list-tile
+      v-for="(item,index) in $store.state.section[section]"
+      :key="`${section}-${index}`"
+    >
+      <v-text-field
+        :value="item"
+        @input="editItem($event, index)"
+        :ref="`${section}-${index}`"
+        :placeholder="$store.state.placeholder[section]"
+        @click:append="removeItem(index)"
+        append-icon="close"
+      ></v-text-field>
+    </v-list-tile>
+  </v-list>
 </template>
 
 <script>
@@ -29,6 +39,8 @@ export default {
     }
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+div.items {
+  background-color: transparent;
+}
 </style>
-
