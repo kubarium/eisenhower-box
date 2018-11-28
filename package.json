@@ -8,6 +8,7 @@
     "lint": "vue-cli-service lint",
     "deploy": "vue-cli-service build && gh-pages -d dist"
   },
+  "homepage": "https://kubarium.github.io/eisenhower-box/",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "vue": "^2.5.17",
