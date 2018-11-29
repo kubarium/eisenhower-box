@@ -1,3 +1,3 @@
 module.exports = {
-    baseUrl: '/i-am-bored/'
+    baseUrl: '/eisenhower-box/'
 }
