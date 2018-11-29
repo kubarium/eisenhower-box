@@ -122,7 +122,7 @@ $deep-orange-lighten: #ff7043;
 .item {
   padding: 1rem;
   text-align: left;
-  min-height: 250px;
+  min-height: 270px;
 }
 .square .item:nth-of-type(2) {
   border-left: 1px solid $green-lighten !important;
