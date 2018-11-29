@@ -77,19 +77,22 @@
 </template>
 
 <script>
-import Box from "./Box.vue"
+import Box from "./Box.vue";
 export default {
-  name: 'EisenhowerBox',
-  props: {
+  name: "EisenhowerBox",
+  props: {},
+  created() {
+    this.$store.commit("loadStorage");
   },
-  created(){
-this.$store.commit("loadStorage")
-  },components:{Box}
-}
+  components: { Box }
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+$green-lighten: #66bb6a;
+$deep-orange-lighten: #ff7043;
+
 .square {
   border-radius: 1rem;
   overflow: hidden;
@@ -98,19 +101,17 @@ this.$store.commit("loadStorage")
   display: grid;
   grid-template-columns: auto 1fr 1fr;
 }
-.column{
+.column {
   border-radius: 1rem;
   overflow: hidden;
 }
-.column .item:not(:last-of-type){
+.column .item:not(:last-of-type) {
   margin-bottom: 15px;
 }
-.headline, .title {
+.headline,
+.title {
   background: #ebebeb;
   padding: 15px;
-}
-.column .title1{
-  line-height: 2 !important;  
 }
 .importance {
   writing-mode: vertical-rl;
@@ -123,18 +124,11 @@ this.$store.commit("loadStorage")
   text-align: left;
   min-height: 250px;
 }
-.item:nth-of-type(1) {
-  margin-right: 1px;
-  margin-bottom: 1px;
+.square .item:nth-of-type(2) {
+  border-left: 1px solid $green-lighten !important;
 }
-.item:nth-of-type(2) {
-  margin-bottom: 1px;
-}
-.item:nth-of-type(3) {
-  margin-right: 1px;
-}
-ul {
-  margin: 1rem;
+.square .item:nth-of-type(4) {
+  border-left: 1px solid $deep-orange-lighten !important;
 }
 a {
   color: #42b983;
