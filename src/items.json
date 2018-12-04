@@ -1,6 +1,58 @@
 {
-  "do": ["Write a blog post", "Do taxes", "Take wife to hospital"],
-  "decide": ["Exercise", "Call friends & family", "Plan long term business strategy"],
-  "delegate": ["Book flights", "Answer some emails", "Schedule interviews"],
-  "later": ["Watch television", "Sort junk email", "Beat yourself up for being in this situation"]
+  "do": [
+    {
+      "text": "Write a blog post",
+      "done": false
+    },
+    {
+      "text": "Do taxes",
+      "done": false
+    },
+    {
+      "text": "Take wife to hospital",
+      "done": false
+    }
+  ],
+  "decide": [
+    {
+      "text": "Exercise",
+      "done": false
+    },
+    {
+      "text": "Call friends & family",
+      "done": false
+    },
+    {
+      "text": "Plan long term business strategy",
+      "done": false
+    }
+  ],
+  "delegate": [
+    {
+      "text": "Book flights",
+      "done": false
+    },
+    {
+      "text": "Answer some emails",
+      "done": false
+    },
+    {
+      "text": "Schedule interviews",
+      "done": false
+    }
+  ],
+  "later": [
+    {
+      "text": "Watch television",
+      "done": false
+    },
+    {
+      "text": "Sort junk email",
+      "done": false
+    },
+    {
+      "text": "Beat yourself up for being in this situation",
+      "done": false
+    }
+  ]
 }
