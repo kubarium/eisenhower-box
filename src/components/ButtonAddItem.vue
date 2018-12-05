@@ -9,10 +9,6 @@
   >
     <v-icon>add</v-icon>
   </v-btn>
-  <!-- <v-tooltip left>
-    <span v-if="$store.state.section[section].length==4">Because it's not a wish list</span>
-    <span v-else>Keep adding what's relevant</span>
-  </v-tooltip> -->
 
 </template>
 

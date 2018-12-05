@@ -19,7 +19,6 @@ import ButtonAddItem from "./ButtonAddItem.vue"
 export default {
 name:"SectionHeader",
 props:["section"],
-
 components:{ButtonAddItem}
 }
 </script>

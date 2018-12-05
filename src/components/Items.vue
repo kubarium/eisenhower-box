@@ -1,63 +1,38 @@
 <template>
   <v-list class="items">
-    <v-list-tile
-      class="item"
-      v-for="(item,index) in $store.state.section[section]"
-      :key="`${section}-${index}`"
-    >
 
-      <v-text-field
-        :value="item.text"
-        @input="editItem($event, index)"
-        :placeholder="$store.state.placeholder[section]"
-        :class="{'line-through':item.done}"
-      />
-      <!-- 
-      <v-menu
-        bottom
-        left
-        transition="slide-y-transition"
-      >
+    <template v-for="(item,index) in $store.state.section[section]">
 
-        <v-btn
-          slot="activator"
-          icon
-          flat
-        >
-          <v-icon>arrow_drop_down</v-icon>
+      <v-list-tile :key="`${section}-${index}`">
 
-        </v-btn>
+        <v-list-tile-content>
+          <v-text-field
+            :value="item.text"
+            @input="editItem($event, index)"
+            :placeholder="$store.state.placeholder[section]"
+            :class="{'line-through':item.done}"
+          />
+        </v-list-tile-content>
 
-        <v-list>
-          <v-list-tile
-            v-for="(action, actionIndex) in actions"
-            :key="actionIndex"
-            @click="action.click(section, actionIndex)"
-          >
-            <v-list-tile-title>{{ action.text }}</v-list-tile-title>
+        <v-list-tile-action>
+          <actions
+            :section="section"
+            :key="index"
+          />
+        </v-list-tile-action>
 
-          </v-list-tile>
-        </v-list>
+      </v-list-tile>
 
-      </v-menu>
- -->
-      <actions
-        :section="section"
-        :key="index"
-      />
-      <!-- <item :text="item.text" />
-      <actions :section="section" /> -->
-    </v-list-tile>
+    </template>
+
   </v-list>
 </template>
 
 <script>
 import Actions from "./Actions.vue";
 export default {
+  name: "Items",
   props: ["section"],
-  data() {
-    return {};
-  },
   components: { Actions },
   methods: {
     editItem(text, index) {
@@ -68,8 +43,7 @@ export default {
         index
       });
     }
-  },
-  computed: {}
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -78,10 +52,5 @@ div.items {
 }
 .line-through {
   text-decoration: line-through;
-}
-.item1 {
-  outline: 1px solid red;
-  display: grid;
-  grid-template-columns: auto fr;
 }
 </style>

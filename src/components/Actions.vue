@@ -32,7 +32,6 @@
 export default {
   props: ["section"],
   name: "Actions",
-  computed: {},
   methods: {
     takeAction(payload) {
       switch (payload.intention) {

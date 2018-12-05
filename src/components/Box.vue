@@ -6,7 +6,6 @@
 </template>
 
 <script>
-// class="item green lighten-2"
 import Items from "./Items.vue"
 import SectionHeader from "./SectionHeader.vue"
 export default {
