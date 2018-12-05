@@ -22,6 +22,10 @@
         </v-list-tile-action>
 
       </v-list-tile>
+      <v-divider
+        :key="`divider-${index}`"
+        v-if="index<$store.state.section[section].length-1"
+      />
 
     </template>
 
