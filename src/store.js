@@ -27,30 +27,38 @@ export default new Vuex.Store({
     section: {}
   },
   getters: {
-    actionsForSection: state => forSection => {
-      return ["Do", "Decide", "Delegate", "Later"].filter(section => section.toLowerCase() != forSection).reduce(
-        (actions, section) => {
-          //add a move action only if the designated list is not full and it's moving to a different section
+    actionsForThisItem: state => payload => {
+      const possibleActions = [];
+      //add a move action only if the designated list is not full and it's moving to a different section
+      const move = ["Do", "Decide", "Delegate", "Later"]
+        .filter(section => section.toLowerCase() != payload.section)
+        .reduce((moveables, section) => {
           if (state.section[section.toLowerCase()].length != 4) {
-            return actions.concat({
+            return moveables.concat({
               text: `Move to ${section}`,
-              payload: { intention: "move", to: section }
+              payload: {
+                intention: "move",
+                from: payload.section,
+                which: payload.index,
+                to: section.toLowerCase()
+              }
             });
           } else {
-            return actions;
+            return moveables;
           }
-        },
-        [
-          {
-            text: "I'm Done!",
-            payload: { intention: "done" }
-          },
-          {
-            text: "Delete It",
-            payload: { intention: "removeItem" }
-          }
-        ]
-      );
+        }, []);
+
+      possibleActions.unshift({
+        text: "Delete It",
+        payload: { intention: "removeItem" }
+      });
+      if (state.section[payload.section][payload.index].done != true) {
+        possibleActions.unshift({
+          text: "I'm Done!",
+          payload: { intention: "done" }
+        });
+      }
+      return possibleActions.concat(move);
     }
   },
   mutations: {
@@ -64,6 +72,9 @@ export default new Vuex.Store({
     },
     removeItem(state, payload) {
       state.section[payload.section].splice(payload.index, 1);
+    },
+    concatItem(state, payload) {
+      state.section[payload.section].unshift(payload.item);
     },
     finishItem(state, payload) {
       const item = state.section[payload.section][payload.index];
@@ -83,6 +94,16 @@ export default new Vuex.Store({
     interactWithItem(context, payload) {
       //payload.intention will be like addItem, editItem, etc.
       context.commit(payload.intention, payload);
+      //then store the changes
+      context.commit("updateStorage");
+    },
+    moveItem(context, payload) {
+      //hold the item we want to move
+      const item = context.state.section[payload.from][payload.index];
+      //remove the item from existing section
+      context.commit("removeItem", { section: payload.from, index: payload.index });
+      //move the holding item to the new section
+      context.commit("concatItem", { section: payload.to, item });
       //then store the changes
       context.commit("updateStorage");
     }

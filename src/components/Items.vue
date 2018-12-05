@@ -10,6 +10,7 @@
         :value="item.text"
         @input="editItem($event, index)"
         :placeholder="$store.state.placeholder[section]"
+        :class="{'line-through':item.done}"
       />
       <!-- 
       <v-menu
@@ -74,6 +75,9 @@ export default {
 <style lang="scss" scoped>
 div.items {
   background-color: transparent;
+}
+.line-through {
+  text-decoration: line-through;
 }
 .item1 {
   outline: 1px solid red;
