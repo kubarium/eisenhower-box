@@ -1,33 +1,29 @@
 <template>
   <v-list class="items">
 
-    <template v-for="(item,index) in $store.state.section[section]">
-
-      <v-list-tile :key="`${section}-${index}`">
-
-        <v-list-tile-content>
+    <v-list-tile
+      :key="`${section}-${index}`"
+      v-for="(item,index) in $store.state.section[section]"
+    >
+      <v-list-tile-content>
+        <v-form>
           <v-text-field
             :value="item.text"
             @input="editItem($event, index)"
             :placeholder="$store.state.placeholder[section]"
             :class="{'line-through':item.done}"
           />
-        </v-list-tile-content>
+        </v-form>
+      </v-list-tile-content>
 
-        <v-list-tile-action>
-          <actions
-            :section="section"
-            :key="index"
-          />
-        </v-list-tile-action>
+      <v-list-tile-action>
+        <actions
+          :section="section"
+          :key="index"
+        />
+      </v-list-tile-action>
 
-      </v-list-tile>
-      <v-divider
-        :key="`divider-${index}`"
-        v-if="index<$store.state.section[section].length-1"
-      />
-
-    </template>
+    </v-list-tile>
 
   </v-list>
 </template>
@@ -56,5 +52,8 @@ div.items {
 }
 .line-through {
   text-decoration: line-through;
+}
+form {
+  width: 100%;
 }
 </style>
