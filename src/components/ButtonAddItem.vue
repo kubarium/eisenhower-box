@@ -20,9 +20,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button-add {
-  margin-left: 0;
-}
 .hidden {
   visibility: hidden;
 }
